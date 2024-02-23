@@ -6,7 +6,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ApiContabilidade.Context;
-using ApiContabilidade.Models;
+using ApiContabilidade.Models.Entitys;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ApiContabilidade.Controllers
 {
@@ -23,6 +24,7 @@ namespace ApiContabilidade.Controllers
 
         // GET: api/Servicoes
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult<IEnumerable<Servico>>> GetServicos()
         {
           if (_context.Servicos == null)
@@ -34,6 +36,7 @@ namespace ApiContabilidade.Controllers
 
         // GET: api/Servicoes/5
         [HttpGet("{id}")]
+        [Authorize]
         public async Task<ActionResult<Servico>> GetServico(int id)
         {
           if (_context.Servicos == null)
@@ -53,6 +56,7 @@ namespace ApiContabilidade.Controllers
         // PUT: api/Servicoes/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
+        [Authorize]
         public async Task<IActionResult> PutServico(int id, Servico servico)
         {
             if (id != servico.IdServico)
@@ -84,6 +88,7 @@ namespace ApiContabilidade.Controllers
         // POST: api/Servicoes
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<Servico>> PostServico(Servico servico)
         {
           if (_context.Servicos == null)
@@ -98,6 +103,7 @@ namespace ApiContabilidade.Controllers
 
         // DELETE: api/Servicoes/5
         [HttpDelete("{id}")]
+        [Authorize]
         public async Task<IActionResult> DeleteServico(int id)
         {
             if (_context.Servicos == null)
