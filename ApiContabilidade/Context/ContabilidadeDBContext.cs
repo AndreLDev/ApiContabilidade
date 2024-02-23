@@ -1,21 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using ApiContabilidade.Models;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using ApiContabilidade.Models.Entitys;
 
 namespace ApiContabilidade.Context
 {
-    public partial class ContabilidadeDBContext : DbContext
+    public partial class ContabilidadeDBContext : IdentityDbContext<IdentityUser>
     {
         public ContabilidadeDBContext()
         {
         }
 
-        public ContabilidadeDBContext(DbContextOptions<ContabilidadeDBContext> options)
-            : base(options)
-        {
-        }
+        public ContabilidadeDBContext(DbContextOptions<ContabilidadeDBContext> options): base(options){ }
 
         public virtual DbSet<Cliente> Clientes { get; set; } = null!;
         public virtual DbSet<DeclaracoesFinanceira> DeclaracoesFinanceiras { get; set; } = null!;
@@ -27,13 +23,13 @@ namespace ApiContabilidade.Context
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Data source=PC03LAB2538\\SENAI; Database=ContabilidadeDB; User Id=sa; Password=senai.123;");
             }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<Cliente>(entity =>
             {
                 entity.HasKey(e => e.IdCliente)

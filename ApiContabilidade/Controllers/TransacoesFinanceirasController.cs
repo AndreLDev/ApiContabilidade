@@ -6,7 +6,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ApiContabilidade.Context;
-using ApiContabilidade.Models;
+using ApiContabilidade.Models.Entitys;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ApiContabilidade.Controllers
 {
@@ -23,6 +24,7 @@ namespace ApiContabilidade.Controllers
 
         // GET: api/TransacoesFinanceiras
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult<IEnumerable<TransacoesFinanceira>>> GetTransacoesFinanceiras()
         {
           if (_context.TransacoesFinanceiras == null)
@@ -34,6 +36,7 @@ namespace ApiContabilidade.Controllers
 
         // GET: api/TransacoesFinanceiras/5
         [HttpGet("{id}")]
+        [Authorize]
         public async Task<ActionResult<TransacoesFinanceira>> GetTransacoesFinanceira(int id)
         {
           if (_context.TransacoesFinanceiras == null)
@@ -53,6 +56,7 @@ namespace ApiContabilidade.Controllers
         // PUT: api/TransacoesFinanceiras/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
+        [Authorize]
         public async Task<IActionResult> PutTransacoesFinanceira(int id, TransacoesFinanceira transacoesFinanceira)
         {
             if (id != transacoesFinanceira.IdTransacao)
@@ -84,6 +88,7 @@ namespace ApiContabilidade.Controllers
         // POST: api/TransacoesFinanceiras
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<TransacoesFinanceira>> PostTransacoesFinanceira(TransacoesFinanceira transacoesFinanceira)
         {
           if (_context.TransacoesFinanceiras == null)
@@ -98,6 +103,7 @@ namespace ApiContabilidade.Controllers
 
         // DELETE: api/TransacoesFinanceiras/5
         [HttpDelete("{id}")]
+        [Authorize]
         public async Task<IActionResult> DeleteTransacoesFinanceira(int id)
         {
             if (_context.TransacoesFinanceiras == null)

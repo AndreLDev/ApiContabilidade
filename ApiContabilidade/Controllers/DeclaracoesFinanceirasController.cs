@@ -6,7 +6,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ApiContabilidade.Context;
-using ApiContabilidade.Models;
+using ApiContabilidade.Models.Entitys;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ApiContabilidade.Controllers
 {
@@ -23,6 +24,7 @@ namespace ApiContabilidade.Controllers
 
         // GET: api/DeclaracoesFinanceiras
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult<IEnumerable<DeclaracoesFinanceira>>> GetDeclaracoesFinanceiras()
         {
           if (_context.DeclaracoesFinanceiras == null)
@@ -34,6 +36,7 @@ namespace ApiContabilidade.Controllers
 
         // GET: api/DeclaracoesFinanceiras/5
         [HttpGet("{id}")]
+        [Authorize]
         public async Task<ActionResult<DeclaracoesFinanceira>> GetDeclaracoesFinanceira(int id)
         {
           if (_context.DeclaracoesFinanceiras == null)
@@ -53,6 +56,7 @@ namespace ApiContabilidade.Controllers
         // PUT: api/DeclaracoesFinanceiras/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
+        [Authorize]
         public async Task<IActionResult> PutDeclaracoesFinanceira(int id, DeclaracoesFinanceira declaracoesFinanceira)
         {
             if (id != declaracoesFinanceira.IdDeclaracao)
@@ -84,6 +88,7 @@ namespace ApiContabilidade.Controllers
         // POST: api/DeclaracoesFinanceiras
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<DeclaracoesFinanceira>> PostDeclaracoesFinanceira(DeclaracoesFinanceira declaracoesFinanceira)
         {
           if (_context.DeclaracoesFinanceiras == null)
@@ -98,6 +103,7 @@ namespace ApiContabilidade.Controllers
 
         // DELETE: api/DeclaracoesFinanceiras/5
         [HttpDelete("{id}")]
+        [Authorize]
         public async Task<IActionResult> DeleteDeclaracoesFinanceira(int id)
         {
             if (_context.DeclaracoesFinanceiras == null)

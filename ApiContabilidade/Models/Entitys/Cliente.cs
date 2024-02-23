@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ApiContabilidade.Models
+namespace ApiContabilidade.Models.Entitys
 {
     public partial class Cliente
     {
